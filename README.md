@@ -1,11 +1,66 @@
-# Jacobi, Gauss-Seidel and SOR Method
-The Jacobi Iterative, Gauss Seidel Iterative, and the Successive Over Relaxation Iterative (SOR) coded in Intel Visual Fortran
+# Jacobi, Gauss-Seidel, and SOR Methods
 
-# Sample Problem Solved
-![image](https://user-images.githubusercontent.com/7680591/59570154-b4240e00-9061-11e9-86c9-78e623e25f57.png)
+Modern, editor-agnostic implementations of the Jacobi, Gauss-Seidel, and Successive Over-Relaxation (SOR) iterative methods.
 
-# Input
-![image](https://user-images.githubusercontent.com/7680591/59570172-ea618d80-9061-11e9-9be2-a027d6836157.png)
+## Repository layout
 
-# Solution
-![image](https://user-images.githubusercontent.com/7680591/59570081-868a9500-9060-11e9-9672-2c5b42d71422.png)
+```
+data/
+  input.txt            # sample input
+  sample_output.txt    # example output
+fortran/
+  iterative_methods.f90
+  main.f90
+python/
+  solve.py
+cpp/
+  main.cpp             # optional C++17 implementation
+```
+
+All Visual Studio specific files and build outputs have been removed. The code is designed to work in VS Code with common compilers/interpreters.
+
+## Input format
+
+The solver reads from a text file (`data/input.txt` by default) with the following layout:
+
+```
+n
+max_iterations
+tolerance
+A matrix (n lines, n values each)
+b vector (1 line, n values)
+initial guess x0 (1 line, n values)
+relaxation factor w (for SOR, 0 < w < 2)
+```
+
+`data/input.txt` contains the example from the original project.
+
+## Fortran (modern Fortran)
+
+Build with `gfortran`:
+
+```bash
+mkdir -p build
+gfortran -std=f2008 -Wall -Wextra -O2 fortran/iterative_methods.f90 fortran/main.f90 -o build/iterative_solvers
+./build/iterative_solvers data/input.txt data/output_fortran.txt
+```
+
+## Python
+
+Run directly with Python 3 (no external dependencies):
+
+```bash
+python python/solve.py data/input.txt data/output_python.txt
+```
+
+## C++17 (optional)
+
+```bash
+mkdir -p build
+g++ -std=c++17 -O2 -Wall -Wextra cpp/main.cpp -o build/iterative_solvers_cpp
+./build/iterative_solvers_cpp data/input.txt data/output_cpp.txt
+```
+
+## Sample output
+
+`data/sample_output.txt` shows the expected shape of the output produced by each implementation.
