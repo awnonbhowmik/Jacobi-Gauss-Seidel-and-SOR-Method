@@ -35,15 +35,21 @@ relaxation factor w (for SOR, 0 < w < 2)
 
 `data/input.txt` contains the example from the original project.
 
-## Fortran (modern Fortran)
+## Fortran (Fortran 2023)
 
-Build with `gfortran`:
+The sources use the `.f90` free-form extension, which remains the standard for
+Fortran 2003/2008/2018/2023 code. Build with `gfortran` in Fortran 2023 mode
+(GCC 14+ adds `-std=f2023`):
 
 ```bash
 mkdir -p build
-gfortran -std=f2008 -Wall -Wextra -O2 fortran/iterative_methods.f90 fortran/main.f90 -o build/iterative_solvers
+gfortran -std=f2023 -Wall -Wextra -O2 fortran/iterative_methods.f90 fortran/main.f90 -o build/iterative_solvers
 ./build/iterative_solvers data/input.txt data/output_fortran.txt
 ```
+
+If your compiler does not yet recognize `-std=f2023` (e.g., GCC 13), use
+`-std=f2018` as a drop-in fallback; the source is written to be Fortran 2023
+compliant.
 
 ## Python
 
