@@ -1,0 +1,24 @@
+*.o
+*.obj
+*.mod
+*.exe
+*.out
+*.pdb
+*.dll
+*.lib
+*.exp
+*.manifest
+*.tmp
+*.log
+*.htm
+
+/build/
+/bin/
+/Debug/
+/debug/
+/x64/
+/.vscode/
+/data/output_*.txt
+
+# macOS and editor cruft
+.DS_Store
